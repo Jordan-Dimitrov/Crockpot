@@ -37,4 +37,12 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    implementation("com.squareup.retrofit2:retrofit:2.1.0")
+//  Gson is for parsing json to a model
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("com.squareup.retrofit2:converter-gson:2.1.0")
+    //
+    // optional - RxJava3 support for Room
+    implementation("androidx.room:room-rxjava3:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 }
