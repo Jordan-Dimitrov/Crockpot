@@ -19,15 +19,15 @@ public class RecipesResponse {
         this.totalPages = totalPages;
     }
 
-    public List<Recipe> getResults() {
+    public List<RecipeDto> getResults() {
         return results;
     }
 
-    public void setResults(List<Recipe> results) {
+    public void setResults(List<RecipeDto> results) {
         this.results = results;
     }
 
-    public RecipesResponse(int page, int totalPages, List<Recipe> results) {
+    public RecipesResponse(int page, int totalPages, List<RecipeDto> results) {
         this.page = page;
         this.totalPages = totalPages;
         this.results = results;
@@ -35,5 +35,5 @@ public class RecipesResponse {
 
     private int page;
     private int totalPages;
-    private List<Recipe> results;
+    private List<RecipeDto> results;
 }

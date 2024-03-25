@@ -1,11 +1,11 @@
 package com.example.crockpot.models;
 
-public class Stats {
+public class StatsDto {
     private int sanity;
     private int hunger;
     private int health;
 
-    public Stats(int sanity, int hunger, int health) {
+    public StatsDto(int sanity, int hunger, int health) {
         this.sanity = sanity;
         this.hunger = hunger;
         this.health = health;

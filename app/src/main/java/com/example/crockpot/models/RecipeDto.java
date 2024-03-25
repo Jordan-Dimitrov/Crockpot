@@ -1,6 +1,6 @@
 package com.example.crockpot.models;
 
-public class Recipe {
+public class RecipeDto {
     private String name;
     private String type;
     private String spoils;
@@ -55,24 +55,24 @@ public class Recipe {
         this.sideEffect = sideEffect;
     }
 
-    public Stats getStats() {
+    public StatsDto getStats() {
         return stats;
     }
 
-    public void setStats(Stats stats) {
-        this.stats = stats;
+    public void setStats(StatsDto statsDto) {
+        this.stats = statsDto;
     }
 
-    private  String sideEffect;
-    private Stats stats;
+    private String sideEffect;
+    private StatsDto stats;
 
-    public Recipe(String name, String type, String spoils, String cookingTime, String asset, String sideEffect, Stats stats) {
+    public RecipeDto(String name, String type, String spoils, String cookingTime, String asset, String sideEffect, StatsDto statsDto) {
         this.name = name;
         this.type = type;
         this.spoils = spoils;
         this.cookingTime = cookingTime;
         this.asset = asset;
         this.sideEffect = sideEffect;
-        this.stats = stats;
+        this.stats = statsDto;
     }
 }
