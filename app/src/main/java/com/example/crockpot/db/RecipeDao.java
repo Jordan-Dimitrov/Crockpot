@@ -1,6 +1,7 @@
 package com.example.crockpot.db;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -19,4 +20,7 @@ public interface RecipeDao {
 
     @Query(value = "SELECT * FROM recipe ORDER BY spoils")
     List<Recipe> getBySpoilage();
+
+    @Delete
+    void deleteRecipe(Recipe recipe);
 }
