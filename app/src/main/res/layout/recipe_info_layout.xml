@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/charImg"
+            android:fadingEdge="vertical"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            tools:srcCompat="@tools:sample/avatars" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Height: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txtType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mass: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtSpoils"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HairColor: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtCookingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SkinColor: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtSideEffect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SkinColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EyeColor: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/txtSanity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EyeColor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="YOB: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txtHunger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="YOB" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender: "
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txtHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSaveCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"/>
+</LinearLayout>
