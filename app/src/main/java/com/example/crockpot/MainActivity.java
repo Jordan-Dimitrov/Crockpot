@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.crockpot.adapter.RecyclerViewRecipeDto;
-import com.example.crockpot.adapter.ViewHolderRecipe;
 import com.example.crockpot.db.AppDatabase;
 import com.example.crockpot.models.RecipeDto;
 import com.example.crockpot.models.RecipesResponse;
@@ -29,7 +28,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -41,12 +39,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private int page = 1;
+    private static final String dbName = "crockpot-new";
+    private static final String sharedPrefrencesKey = "currentPage";
+    private static final String sharedPrefrencesName = "Pages";
+    private static final String url = "https://dont-starve-together-api.xyz/api/";
     public static AppDatabase appDatabase;
+    private static final int maxPages = 3;
     private RecyclerView recyclerView;
     public static RecipeManager recipeManager;
     private void setAdapter(List<RecipeDto> recipeDtos){
-        Log.e(TAG, recipeDtos.size() + " 11123");
-
         RecyclerViewRecipeDto viewRecipeDto = new RecyclerViewRecipeDto(recipeDtos, recipeManager);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
 
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "crockpot-new")
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, dbName)
                 .allowMainThreadQueries()
                 .build();
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnPrev = findViewById(R.id.btnPrev);
 
         Button btnShowSaved = findViewById(R.id.btnShowSaved);
-        Intent goToHomeActivity = new Intent(this, Favorites.class);
+        Intent goToHomeActivity = new Intent(this, FavoritesActivity.class);
         btnShowSaved.setOnClickListener(v -> {
             startActivity(goToHomeActivity);
         });
@@ -81,26 +82,26 @@ public class MainActivity extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://dont-starve-together-api.xyz/api/")
+                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         CrockpotApiClient crockpotApiClient = retrofit.create(CrockpotApiClient.class);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Pages", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(sharedPrefrencesName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        int currPage = sharedPreferences.getInt("currentPage", 1);
+        int currPage = sharedPreferences.getInt(sharedPrefrencesKey, 1);
         page = currPage;
 
-        recipeManager = new RecipeManager(appDatabase, crockpotApiClient, editor);
+        recipeManager = new RecipeManager(appDatabase);
 
         Log.e(TAG, recipeManager.getRecipes().size() + "");
 
         getRecipeDtos(page, crockpotApiClient, editor);
 
         btnNext.setOnClickListener(v -> {
-            if(page == 3){
+            if(page == maxPages){
                 return;
             }
             page++;
@@ -114,10 +115,6 @@ public class MainActivity extends AppCompatActivity {
             page--;
             getRecipeDtos(page, crockpotApiClient, editor);
         });
-
-        Log.e(TAG, recipeManager.getRecipes().size() + " ");
-
-        Log.e(TAG, " 1111 ");
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -133,10 +130,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RecipesResponse> call, Response<RecipesResponse> response) {
                 if (response.isSuccessful()) {
-                    if(response.body().getTotalPages() == response.body().getPage()){
-                        return;
-                    }
-                    editor.putInt("currentPage", page);
+                    editor.putInt(sharedPrefrencesKey, page);
                     editor.apply();
                     RecipesResponse swResponse = response.body();
                     List<RecipeDto> recipeDtos = swResponse.getResults();

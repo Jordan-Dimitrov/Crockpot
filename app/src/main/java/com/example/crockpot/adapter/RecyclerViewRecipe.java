@@ -1,8 +1,5 @@
 package com.example.crockpot.adapter;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crockpot.R;
 import com.example.crockpot.RecipeManager;
 import com.example.crockpot.db.Recipe;
-import com.example.crockpot.models.RecipeDto;
 
 import java.util.List;
 
 public class RecyclerViewRecipe extends RecyclerView.Adapter<ViewHolderRecipe> {
+    private static final String deleteBtnName = "Delete";
     public RecipeManager recipeManager;
     public List<Recipe> recipes;
     public RecyclerViewRecipe(RecipeManager recipeManager){
@@ -45,11 +42,13 @@ public class RecyclerViewRecipe extends RecyclerView.Adapter<ViewHolderRecipe> {
         holder.cookingTime.setText(recipe.getCookingTime().name());
         holder.spoils.setText(recipe.getSpoils().name());
         holder.type.setText(recipe.getType().name());
-        holder.button.setText("Delete");
+        holder.button.setText(deleteBtnName);
 
         holder.button.setOnClickListener(v -> {
             recipeManager.deleteRecipe(recipe);
-            notifyItemRemoved(position);
+            int adapterPosition = holder.getAdapterPosition();
+            recipes.remove(adapterPosition);
+            notifyItemRemoved(adapterPosition);
         });
     }
 
