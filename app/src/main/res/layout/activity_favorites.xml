@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".FavoritesActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Favourite Recipes"
+        android:background="@drawable/black_border"
+        android:textSize="30sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFavorites"
         android:layout_width="409dp"

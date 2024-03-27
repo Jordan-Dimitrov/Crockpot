@@ -3,15 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/black_border"
+    android:gravity="center_horizontal">
+
+
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <ImageView
             android:id="@+id/charImg"
             android:fadingEdge="vertical"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="200dp"
             tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
@@ -19,12 +25,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name: "
+            android:text="name: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic" />
 
@@ -32,7 +40,7 @@
             android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -40,12 +48,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Height: "
+            android:text="type: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic" />
 
@@ -59,12 +69,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mass: "
+            android:text="spoils: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic"/>
 
@@ -79,12 +91,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HairColor: "
+            android:text="cooking time: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic"/>
 
@@ -98,12 +112,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SkinColor: "
+            android:text="side effect: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic"/>
 
@@ -111,19 +127,21 @@
             android:id="@+id/txtSideEffect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SkinColor" />
+            android:text="" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EyeColor: "
+            android:text="sanity: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic"/>
 
@@ -131,19 +149,21 @@
             android:id="@+id/txtSanity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="EyeColor" />
+            android:text="" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="YOB: "
+            android:text="hunger: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic" />
 
@@ -151,19 +171,21 @@
             android:id="@+id/txtHunger"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="YOB" />
+            android:text="" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender: "
+            android:text="health: "
             android:textColor="@color/material_dynamic_neutral50"
             android:textStyle="italic" />
 
@@ -171,7 +193,7 @@
             android:id="@+id/txtHealth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -179,5 +201,7 @@
         android:id="@+id/btnSaveCharacter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"/>
+        android:text="Favourite"
+        android:layout_marginLeft="5dp"
+        />
 </LinearLayout>

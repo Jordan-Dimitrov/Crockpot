@@ -8,11 +8,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Recipes"
+        android:background="@drawable/black_border"
+        android:textSize="30sp" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="20dp"
         android:id="@+id/recyclerView"
         android:layout_width="409dp"
-        android:layout_height="600dp"/>
+        android:layout_height="577dp"
+        android:padding="20dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -36,6 +45,6 @@
         android:id="@+id/btnShowSaved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Saved"/>
+        android:text="Show Favourites"/>
 
 </LinearLayout>
