@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,12 +55,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "crockpot-new")
                 .allowMainThreadQueries()
                 .build();
+
+        Button btnNext = findViewById(R.id.btnNext);
+        Button btnPrev = findViewById(R.id.btnPrev);
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -85,13 +90,27 @@ public class MainActivity extends AppCompatActivity {
 
         getRecipeDtos(page, crockpotApiClient, editor);
 
+        btnNext.setOnClickListener(v -> {
+            if(page == 3){
+                return;
+            }
+            page++;
+            getRecipeDtos(page, crockpotApiClient, editor);
+        });
+
+        btnPrev.setOnClickListener(v -> {
+            if (page == 1) {
+                return;
+            }
+            page--;
+            getRecipeDtos(page, crockpotApiClient, editor);
+        });
+
         Log.e(TAG, recipeManager.getRecipes().size() + " ");
 
         Log.e(TAG, " 1111 ");
 
-        super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -105,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RecipesResponse> call, Response<RecipesResponse> response) {
                 if (response.isSuccessful()) {
+                    if(response.body().getTotalPages() == response.body().getPage()){
+                        return;
+                    }
                     editor.putInt("currentPage", page);
                     editor.apply();
                     RecipesResponse swResponse = response.body();

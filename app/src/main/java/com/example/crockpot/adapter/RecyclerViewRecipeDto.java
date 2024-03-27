@@ -37,9 +37,9 @@ public class RecyclerViewRecipeDto extends RecyclerView.Adapter<ViewHolderRecipe
         holder.setRecipeFontSprite(recipeDto.getAsset());
 
         holder.name.setText(recipeDto.getName());
-        holder.health.setText(String.valueOf(recipeDto.getStats().getHealth()));
-        holder.sanity.setText(String.valueOf(recipeDto.getStats().getSanity()));
-        holder.hunger.setText(String.valueOf(recipeDto.getStats().getHunger()));
+        holder.health.setText(recipeDto.getStats().getHealth() + "");
+        holder.sanity.setText(recipeDto.getStats().getSanity() + "");
+        holder.hunger.setText(recipeDto.getStats().getHunger() + "");
         holder.sideEffect.setText(recipeDto.getSideEffect());
         holder.cookingTime.setText(recipeDto.getCookingTime());
         holder.spoils.setText(recipeDto.getSpoils());
