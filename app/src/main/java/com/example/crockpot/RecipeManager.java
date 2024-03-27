@@ -65,12 +65,6 @@ public class RecipeManager
     }
 
     public boolean deleteRecipe(Recipe recipe){
-        List<Recipe> recipes = recipeDao.getAll();
-
-        if(!recipes.contains(recipe)){
-            return false;
-        }
-
         recipeDao.deleteRecipe(recipe.getId());
 
         return true;

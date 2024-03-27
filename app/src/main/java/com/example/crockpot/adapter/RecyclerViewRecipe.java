@@ -45,8 +45,11 @@ public class RecyclerViewRecipe extends RecyclerView.Adapter<ViewHolderRecipe> {
         holder.cookingTime.setText(recipe.getCookingTime().name());
         holder.spoils.setText(recipe.getSpoils().name());
         holder.type.setText(recipe.getType().name());
+        holder.button.setText("Delete");
 
         holder.button.setOnClickListener(v -> {
+            recipeManager.deleteRecipe(recipe);
+            notifyItemRemoved(position);
         });
     }
 
