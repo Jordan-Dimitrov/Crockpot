@@ -2,9 +2,15 @@ package com.example.crockpot;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.crockpot.adapter.RecyclerViewRecipeDto;
 import com.example.crockpot.db.AppDatabase;
 import com.example.crockpot.db.Recipe;
 import com.example.crockpot.db.RecipeDao;
@@ -16,6 +22,7 @@ import com.example.crockpot.models.RecipesResponse;
 import com.example.crockpot.web.CrockpotApiClient;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,27 +40,6 @@ public class RecipeManager
         this.editor = editor;
         this.crockpotApiClient = apiClient;
         recipeDao = appDatabase.recipeDao();
-    }
-
-    public void getRecipeDtos(int page) {
-        crockpotApiClient.getRecipesPaged(page).enqueue(new Callback<RecipesResponse>() {
-            @Override
-            public void onResponse(Call<RecipesResponse> call, Response<RecipesResponse> response) {
-                if (response.isSuccessful()) {
-                    editor.putInt("currentPage", page);
-                    editor.apply();
-                    RecipesResponse swResponse = response.body();
-                    List<RecipeDto> recipeDtos = swResponse.getResults();
-                    MainActivity.setAdapter(recipeDtos);
-
-                } else {
-                    Log.e(TAG, "Failed to get recipes: " + response.message());                }
-            }
-
-            @Override
-            public void onFailure(Call<RecipesResponse> call, Throwable t) {
-                Log.e(TAG, "Error getting recipes response: " + t.getMessage());            }
-        });
     }
 
     public void insertRecipe(RecipeDto recipeDto){
