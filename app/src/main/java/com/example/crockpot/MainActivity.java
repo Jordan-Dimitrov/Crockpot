@@ -3,6 +3,7 @@ package com.example.crockpot;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private int page = 1;
     public static AppDatabase appDatabase;
     private RecyclerView recyclerView;
-    public RecipeManager recipeManager;
+    public static RecipeManager recipeManager;
     private void setAdapter(List<RecipeDto> recipeDtos){
         Log.e(TAG, recipeDtos.size() + " 11123");
 
@@ -66,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
         Button btnNext = findViewById(R.id.btnNext);
         Button btnPrev = findViewById(R.id.btnPrev);
 
+        Button btnShowSaved = findViewById(R.id.btnShowSaved);
+        Intent goToHomeActivity = new Intent(this, Favorites.class);
+        btnShowSaved.setOnClickListener(v -> {
+            startActivity(goToHomeActivity);
+        });
+
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -87,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         page = currPage;
 
         recipeManager = new RecipeManager(appDatabase, crockpotApiClient, editor);
+
+        Log.e(TAG, recipeManager.getRecipes().size() + "");
 
         getRecipeDtos(page, crockpotApiClient, editor);
 

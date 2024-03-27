@@ -20,7 +20,6 @@ public interface RecipeDao {
 
     @Query(value = "SELECT * FROM recipe ORDER BY spoils")
     List<Recipe> getBySpoilage();
-
-    @Delete
-    void deleteRecipe(Recipe recipe);
+    @Query("DELETE FROM recipe WHERE id = :id")
+    void deleteRecipe(long id);
 }

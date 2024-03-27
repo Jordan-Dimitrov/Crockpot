@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crockpot.R;
 import com.example.crockpot.RecipeManager;
+import com.example.crockpot.db.Recipe;
 import com.example.crockpot.models.RecipeDto;
 
 import java.util.List;
@@ -47,6 +48,11 @@ public class RecyclerViewRecipeDto extends RecyclerView.Adapter<ViewHolderRecipe
 
         holder.button.setOnClickListener(v -> {
             Log.w(TAG, "BUTTON SAVE IS CLICKED FOR " + recipeDto.getName());
+
+            if(recipeManager.recipeIsPresent(recipeDto.getName())){
+                return;
+            }
+
             recipeManager.insertRecipe(recipeDto);
         });
     }

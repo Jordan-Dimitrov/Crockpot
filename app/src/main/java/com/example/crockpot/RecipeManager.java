@@ -43,10 +43,14 @@ public class RecipeManager
     }
 
     public void insertRecipe(RecipeDto recipeDto){
+        String cookingTimeValue = recipeDto.getCookingTime().replaceAll("\\s", "");
+        String foodType = recipeDto.getType().replaceAll("\\s", "");
+        String spoilage = recipeDto.getSpoils().replaceAll("\\s", "");
+
         Recipe recipe = new Recipe(recipeDto.getName(),
-                FoodType.valueOf(recipeDto.getType()),
-                Spoilage.valueOf(recipeDto.getSpoils()),
-                CookingTime.valueOf(recipeDto.getCookingTime()),
+                FoodType.valueOf(foodType),
+                Spoilage.valueOf(spoilage),
+                CookingTime.valueOf(cookingTimeValue),
                 recipeDto.getAsset(),
                 recipeDto.getSideEffect(),
                 recipeDto.getStats().getSanity(),
@@ -67,7 +71,17 @@ public class RecipeManager
             return false;
         }
 
-        recipeDao.deleteRecipe(recipe);
+        recipeDao.deleteRecipe(recipe.getId());
+
+        return true;
+    }
+
+    public boolean recipeIsPresent(String name){
+        List<Recipe> recipes = recipeDao.getByName(name);
+
+        if(recipes.size() == 0){
+            return false;
+        }
 
         return true;
     }
