@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/editTextEmailReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="#F80C0C" />
+    <EditText
+        android:id="@+id/editTextPasswordReg1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="pass"
+        android:inputType="textPassword"
+        android:textColor="#F80C0C" />
+    <EditText
+        android:id="@+id/editTextPasswordReg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="pass"
+        android:inputType="textPassword"
+        android:textColor="#F80C0C" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/register"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/go_to_login"/>
+
+
+
+</LinearLayout>

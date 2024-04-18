@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -42,6 +43,9 @@ dependencies {
 //  Gson is for parsing json to a model
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.squareup.retrofit2:converter-gson:2.1.0")
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-auth")
+
     //
     // optional - RxJava3 support for Room
     implementation("androidx.room:room-rxjava3:2.6.1")
