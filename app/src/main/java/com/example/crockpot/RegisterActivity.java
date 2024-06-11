@@ -9,20 +9,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.crockpot.models.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
         EditText email = findViewById(R.id.editTextEmailReg);
         EditText pass1 = findViewById(R.id.editTextPasswordReg1);
         EditText pass2 = findViewById(R.id.editTextPasswordReg2);
@@ -59,6 +64,19 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Account created",
                                         Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                UserInfo info = new UserInfo(user.getEmail(), user.getUid());
+
+                                db.collection("userz")
+                                        .document(info.getUserId())
+                                        .set(info)
+                                        .addOnSuccessListener(aVoid -> {
+                                            System.out.println("User successfully uploaded!");
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            System.err.println("Error uploading user: " + e.getMessage());
+                                        });
+
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.

@@ -38,14 +38,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"/>
-
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload"/>
 
     </LinearLayout>
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <Button
         android:id="@+id/btnShowSaved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show Favourites"/>
+    <Button
+        android:id="@+id/btnInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Info"/>
+    <Button
+        android:id="@+id/btnPosts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Posts"/>
+</LinearLayout>
+
 
 </LinearLayout>
