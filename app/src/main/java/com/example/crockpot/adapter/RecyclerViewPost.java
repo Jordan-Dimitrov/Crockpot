@@ -23,7 +23,6 @@ import java.util.List;
 
 public class RecyclerViewPost extends RecyclerView.Adapter<ViewHolderPost> {
     private List<Post> postList;
-    private Context context;
     public RecyclerViewPost(List<Post> postList) {
         this.postList = postList;
     }

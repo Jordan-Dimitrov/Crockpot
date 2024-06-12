@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     public static RecipeManager recipeManager;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
     private void setAdapter(List<RecipeDto> recipeDtos){
         RecyclerViewRecipeDto viewRecipeDto = new RecyclerViewRecipeDto(recipeDtos, recipeManager);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, dbName)
                 .allowMainThreadQueries()
@@ -153,30 +151,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
-
-    public void getPosts(){
-        db.collection("userz").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String userId = document.getId();
-                            Map<String, Object> userData = document.getData();
-                            String userName = userData.get("email").toString();
-
-                            db.collection("userz").document(userId).collection("posts").get()
-                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                            for (QueryDocumentSnapshot postDocument : queryDocumentSnapshots) {
-                                                Post post = postDocument.toObject(Post.class);
-                                            }
-                                        }
-                                    });
-                        }
-                    }
-                });
     }
 
     public void getRecipeDtos(int page, CrockpotApiClient crockpotApiClient, SharedPreferences.Editor editor)

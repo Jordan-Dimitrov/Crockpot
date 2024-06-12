@@ -52,7 +52,29 @@ public class PostsActivity extends AppCompatActivity {
             startActivity(gotoInfo);
         });
 
-        loadPosts();
+        loadAllPosts();
+    }
+
+    private void loadAllPosts(){
+        db.collectionGroup("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            postList.clear();  // Clear the list before adding new posts
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Post post = document.toObject(Post.class);
+                                postList.add(post);
+                            }
+                            RecyclerViewPost postAdapter = new RecyclerViewPost(postList);
+                            recyclerView.setAdapter(postAdapter);
+                            Log.d(TAG, "Posts loaded successfully");
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     private void loadPosts() {
