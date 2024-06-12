@@ -1,4 +1,4 @@
-package com.example.crockpot;
+package com.example.crockpot.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.crockpot.R;
 import com.example.crockpot.adapter.RecyclerViewRecipe;
 
 public class FavoritesActivity extends AppCompatActivity {

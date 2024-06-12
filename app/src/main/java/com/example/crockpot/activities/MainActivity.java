@@ -1,4 +1,4 @@
-package com.example.crockpot;
+package com.example.crockpot.activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -19,22 +19,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.crockpot.R;
 import com.example.crockpot.adapter.RecyclerViewRecipeDto;
 import com.example.crockpot.db.AppDatabase;
-import com.example.crockpot.models.Post;
 import com.example.crockpot.models.RecipeDto;
 import com.example.crockpot.models.RecipesResponse;
+import com.example.crockpot.services.RecipeManager;
 import com.example.crockpot.web.CrockpotApiClient;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -54,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int maxPages = 3;
     private RecyclerView recyclerView;
     public static RecipeManager recipeManager;
-    private FirebaseFirestore db;
+
     private void setAdapter(List<RecipeDto> recipeDtos){
         RecyclerViewRecipeDto viewRecipeDto = new RecyclerViewRecipeDto(recipeDtos, recipeManager);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -68,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
-
-
-        db = FirebaseFirestore.getInstance();
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, dbName)
                 .allowMainThreadQueries()

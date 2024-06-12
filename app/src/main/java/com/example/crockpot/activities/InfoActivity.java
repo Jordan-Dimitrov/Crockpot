@@ -1,4 +1,4 @@
-package com.example.crockpot;
+package com.example.crockpot.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.crockpot.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class InfoActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

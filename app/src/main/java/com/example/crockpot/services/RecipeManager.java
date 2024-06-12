@@ -1,4 +1,4 @@
-package com.example.crockpot;
+package com.example.crockpot.services;
 
 import com.example.crockpot.db.AppDatabase;
 import com.example.crockpot.db.Recipe;

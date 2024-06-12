@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crockpot.R;
-import com.example.crockpot.RecipeManager;
+import com.example.crockpot.services.RecipeManager;
 import com.example.crockpot.db.Recipe;
 
 import java.util.List;

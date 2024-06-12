@@ -1,4 +1,4 @@
-package com.example.crockpot;
+package com.example.crockpot.activities;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.crockpot.R;
 import com.example.crockpot.adapter.RecyclerViewPost;
 import com.example.crockpot.models.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,7 +63,7 @@ public class PostsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            postList.clear();  // Clear the list before adding new posts
+                            postList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Post post = document.toObject(Post.class);
                                 postList.add(post);

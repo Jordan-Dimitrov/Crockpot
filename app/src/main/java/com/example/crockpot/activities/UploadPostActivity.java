@@ -1,4 +1,4 @@
-package com.example.crockpot;
+package com.example.crockpot.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.crockpot.R;
 import com.example.crockpot.models.Post;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,7 +33,7 @@ public class UploadPostActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private FirebaseFirestore db;
     private EditText content;
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

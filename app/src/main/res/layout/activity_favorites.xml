@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FavoritesActivity"
+    tools:context=".activities.FavoritesActivity"
     android:background="@drawable/black_border">
 
     <TextView
