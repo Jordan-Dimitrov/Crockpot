@@ -33,6 +33,16 @@
                 android:focusable="true"/>
 
             <Button
+                android:id="@+id/btnMine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mine"
+                android:textColor="@android:color/white"
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <Button
                 android:id="@+id/btnInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -19,6 +19,7 @@ import com.example.crockpot.models.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,7 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostsActivity extends AppCompatActivity {
+public class MinePostsActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private List<Post> postList;
@@ -34,7 +35,7 @@ public class PostsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts);
+        setContentView(R.layout.activity_mine_posts);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -52,28 +53,31 @@ public class PostsActivity extends AppCompatActivity {
             startActivity(gotoInfo);
         });
 
-        loadAllPosts();
+        loadPosts();
     }
 
-    private void loadAllPosts(){
-        db.collectionGroup("posts")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            postList.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Post post = document.toObject(Post.class);
-                                postList.add(post);
+    private void loadPosts() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            db.collection("userz")
+                    .document(user.getUid())
+                    .collection("posts")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Post post = document.toObject(Post.class);
+                                    postList.add(post);
+                                }
                             }
                             RecyclerViewPost postAdapter = new RecyclerViewPost(postList);
                             recyclerView.setAdapter(postAdapter);
-                            Log.d(TAG, "Posts loaded successfully");
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "AAA");
+
                         }
-                    }
-                });
+                    });
+        }
     }
 }

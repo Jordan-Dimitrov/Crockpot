@@ -83,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(gotoInfo);
         });
 
+        Button btnMine = findViewById(R.id.btnMine);
+        Intent gotoMine = new Intent(this, MinePostsActivity.class);
+        btnMine.setOnClickListener(v -> {
+            startActivity(gotoMine);
+        });
+
+
         Button btnUpload = findViewById(R.id.btnUpload);
         Intent goToUpload = new Intent(this, UploadPostActivity.class);
         btnUpload.setOnClickListener(v -> {
